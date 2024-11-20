@@ -1,4 +1,11 @@
-import { motion, useScroll } from "framer-motion";
+import {
+  motion,
+  useAnimation,
+  useInView,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+import { useEffect, useRef } from "react";
 
 const gridContainerVariants = {
   hidden: { opacity: 0 },
@@ -30,6 +37,34 @@ const svgIconVariants = {
 
 const App = () => {
   const { scrollYProgress: completionProgress } = useScroll();
+
+  // for motion.h1
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { once: true });
+  const mainContrls = useAnimation();
+  
+  // for motion.p
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end end"],
+  });
+  const paragraphOneValue = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["-100%", "0%"]
+  );
+  const paragraphTwoValue = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["100%", "0%"]
+  );
+
+    // for motion.h1
+  useEffect(() => {
+    if (isInView) {
+      mainContrls.start("visible");
+    }
+  }, [isInView]);
 
   return (
     <div className="fex fex-col gap-10 overflow-auto">
@@ -159,7 +194,7 @@ const App = () => {
                   delay: 1,
                   repeat: Infinity,
                   repeatType: "reverse",
-                  repeatDelay:1
+                  repeatDelay: 1,
                 },
                 fill: {
                   duration: 2,
@@ -175,6 +210,37 @@ const App = () => {
         </motion.div>
         {/************  07. SVG animation End ***************/}
       </motion.section>
+
+      <section className="flex flex-col gap-10 mb-10" ref={containerRef}>
+        <motion.h1
+          className="text-5xl tracking-wide text-slate-100 text-center"
+          animate={mainContrls}
+          initial="hidden"
+          variants={{
+            hidden: { opacity: 0, y: 75 },
+            visible: { opacity: 1, y: 0 },
+          }}
+          transition={{ delay: 0.3 }}
+        >
+          Just Keep Scrolling
+        </motion.h1>
+        <motion.p
+          style={{ translateX: paragraphOneValue }}
+          className="text-slate-100 font-thin text-4xl w-1/2 mx-auto"
+        >
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Error,
+          deserunt veniam, nam odio quisquam est ab alias incidunt illum id
+          dolore! Soluta repellat veritatis nobis laudantium, earum ut! Hic.
+        </motion.p>
+        <motion.p
+          style={{ translateX: paragraphTwoValue }}
+          className="text-slate-100 font-thin text-4xl w-1/2 mx-auto"
+        >
+          Lorem, ipsum dolor sit amet adipisicing elit. Ab iusto praesentium,
+          nostrum blanditiis laboriosam quisquam consequatur modi inventore
+          delectus ratione!
+        </motion.p>
+      </section>
     </div>
   );
 };

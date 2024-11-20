@@ -9,4 +9,7 @@
 ##### 05. Drag and move box/div
 ##### 06. Scroll Progression
 ##### 07. SVG animation
+##### 08. Scroll Animation, text come from left/right when scrolling
+
+### Live Site: https://amazing-daffodil-dcc192.netlify.app/
 
