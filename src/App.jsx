@@ -27,6 +27,7 @@ const App = () => {
       >
 
 
+
         {/************  02. Fade Up Start ***************/}
         <motion.div
           variants={gridSquireVariants}
@@ -48,6 +49,7 @@ const App = () => {
         {/************  02 Fade Up End ***************/}
 
 
+
         {/************  03. Animate div with keyframe> scale, rotate, border-redious Start ***************/}
         <motion.div
           variants={gridSquireVariants}
@@ -67,6 +69,7 @@ const App = () => {
             {/************  03. Animate div with keyframe> scale, rotate, border-redious End ***************/}
 
 
+
             {/************  04. Animate btn Start ***************/}
         <motion.div
           variants={gridSquireVariants}
@@ -75,7 +78,7 @@ const App = () => {
           <motion.button
           whileTap={{scale: 0.9}} 
           whileHover={{scale: 1.1, background: "#d1d5db", color: "black"}}
-          transition={{bounceDumping: 10, bounceStiffness: 600}}
+          transition={{bounceDamping: 10, bounceStiffness: 600}}
           className="bg-emerald-600 w-1/2 py-4 rounded-lg text-2xl text-gray-100 font-light tracking-wide">
           Click The Button
           </motion.button>
@@ -87,19 +90,34 @@ const App = () => {
         {/************  05. Drag and move Start ***************/}
         <motion.div
           variants={gridSquireVariants}
-          className="bg-slate-800 aspect-square rounded-lg flex justify-center items-center gap-10"
+          className="bg-slate-800 aspect-square rounded-lg flex justify-center items-center gap-10 "
           >
             <motion.div 
-            className="w-1/3 h-1/3 bg-teal-300 rounded-3xl cursor-grab"
+            className="w-1/3 h-1/3 bg-teal-300 rounded-3xl cursor-grab text-xl flex items-center justify-center"
             drag
-            />
+            dragConstraints={{
+              // top: -125, right: 125, bottom: 125, left: -125
+              top: 0, right: 0, bottom: 0, left: 0
+            }}
+            // "bounceStiffness" = how fast its comming back in its position
+            // "bounceDamping" = for elasticity
+            dragTransition={{bounceStiffness: 600, bounceDamping: 10}}
+            >Drag the box
+            </motion.div>
+            
           </motion.div>
           {/************  05. Drag and move End ***************/}
 
+
+
+          {/************  06. Scroll Progression Start ***************/}
         <motion.div
           variants={gridSquireVariants}
           className="bg-slate-800 aspect-square rounded-lg justify-center items-center gap-10"
-        ></motion.div>
+          >
+            
+          </motion.div>
+          {/************  06. Scroll Progression End ***************/}
 
         <motion.div
           variants={gridSquireVariants}
