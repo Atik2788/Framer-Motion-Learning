@@ -45,27 +45,31 @@ const App = () => {
         </motion.div>
         {/************  02 Fade Up End ***************/}
 
+        {/************  03. Animate div> scale, rotate, border-redious Start ***************/}
         <motion.div
           variants={gridSquireVariants}
-          className="bg-slate-800 aspect-square rounded-lg justify-center items-center gap-10"
+          className="bg-slate-800 aspect-square rounded-lg flex justify-center items-center gap-10"
         >
           <motion.div 
             className="w-1/3 h-1/3 shadow-md bg-rose-400"
-            animate={{
+            animate={{  
               scale: [1, 2, 2, 1],
-              
+              rotate: [0, 90, 90, 0],
+              borderRadius:["10%", "10%", "50%", "10%"]
             }}
+            transition={{duration: 5, ease: "easeOut", repeat: Infinity, repeatDelay: 1}}
             />
         </motion.div>
+            {/************  03. Animate div> scale, rotate, border-redious End ***************/}
 
         <motion.div
           variants={gridSquireVariants}
-          className="bg-slate-800 aspect-square rounded-lg justify-center items-center gap-10"
+          className="bg-slate-800 aspect-square rounded-lg flex justify-center items-center gap-10"
         ></motion.div>
 
         <motion.div
           variants={gridSquireVariants}
-          className="bg-slate-800 aspect-square rounded-lg justify-center items-center gap-10"
+          className="bg-slate-800 aspect-square rounded-lg flex justify-center items-center gap-10"
         ></motion.div>
 
         <motion.div
