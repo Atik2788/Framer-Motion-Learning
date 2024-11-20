@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useScroll } from "framer-motion";
 
 const gridContainerVariants = {
   hidden: { opacity: 0 },
@@ -16,6 +16,8 @@ const gridSquireVariants = {
 };
 
 const App = () => {
+  const {scrollYProgress: completionProgress} = useScroll()
+
   return (
     <div className="fex fex-col gap-10 overflow-auto">
       {/***************** 01. Div showing slowly using >>> motion.div/section >  gridContainerVariants,  gridSquireVariants********************/}
@@ -53,8 +55,7 @@ const App = () => {
         {/************  03. Animate div with keyframe> scale, rotate, border-redious Start ***************/}
         <motion.div
           variants={gridSquireVariants}
-          className="bg-slate-800 aspect-square rounded-lg flex justify-center items-center gap-10"
-        >
+          className="bg-slate-800 aspect-square rounded-lg flex justify-center items-center gap-10">
           <motion.div 
             className="w-1/3 h-1/3 shadow-md bg-orange-500"
             animate={{  
@@ -73,8 +74,7 @@ const App = () => {
             {/************  04. Animate btn Start ***************/}
         <motion.div
           variants={gridSquireVariants}
-          className="bg-slate-800 aspect-square rounded-lg flex justify-center items-center gap-10"
-          >
+          className="bg-slate-800 aspect-square rounded-lg flex justify-center items-center gap-10">
           <motion.button
           whileTap={{scale: 0.9}} 
           whileHover={{scale: 1.1, background: "#d1d5db", color: "black"}}
@@ -90,8 +90,7 @@ const App = () => {
         {/************  05. Drag and move Start ***************/}
         <motion.div
           variants={gridSquireVariants}
-          className="bg-slate-800 aspect-square rounded-lg flex justify-center items-center gap-10 "
-          >
+          className="bg-slate-800 aspect-square rounded-lg flex justify-center items-center gap-10 ">
             <motion.div 
             className="w-1/3 h-1/3 bg-teal-300 rounded-3xl cursor-grab text-xl flex items-center justify-center"
             drag
@@ -113,9 +112,11 @@ const App = () => {
           {/************  06. Scroll Progression Start ***************/}
         <motion.div
           variants={gridSquireVariants}
-          className="bg-slate-800 aspect-square rounded-lg justify-center items-center gap-10"
-          >
-            
+          className="bg-slate-800 aspect-square rounded-lg justify-center items-center gap-10">
+            <motion.div className="w-40 aspect-square bg-gray-50/20 rounded-xl">
+              <motion.div className="w-full h-full bg-gray-400 rounded-xl origin-bottom" 
+              style={{scaleY: completionProgress}}/>
+            </motion.div>
           </motion.div>
           {/************  06. Scroll Progression End ***************/}
 

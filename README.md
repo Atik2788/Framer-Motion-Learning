@@ -7,4 +7,6 @@
 ##### 03. Animate div with keyframe> scale, rotate, border-redious Start
 ##### 04. Animate btn, hover, bg change, scale when click
 ##### 05. Drag and move box/div
+##### 06. Scroll Progression
+##### 06. Scroll Progression
 
